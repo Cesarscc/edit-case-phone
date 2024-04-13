@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import IphoneX from "/public/images/iphoneX.png";
 import IphoneXR from "/public/images/iphoneXR.png";
+import IphoneXS from "/public/images/iphoneXS.png";
+import IphoneXSMax from "/public/images/iphoneXSMax.png";
+import Iphone11 from "/public/images/iphone11.png";
+import Iphone11pro from "/public/images/iphone11pro.png";
 
 export default function Home() {
   const [value, setValue] = useState(1);
@@ -14,7 +18,7 @@ export default function Home() {
   const [heightImage, setHeightImage] = useState(IphoneX.height / 4);
 
   const handleChange = (e) => {
-    setValue(e.target.value);
+    setValue(parseInt(e.target.value));
   };
 
   const handleChangeModel = (e) => {
@@ -22,12 +26,21 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const src = valueModel == "X" ? IphoneX : IphoneXR;
+    const src =
+      valueModel == "X"
+        ? IphoneX
+        : valueModel == "XR"
+        ? IphoneXR
+        : valueModel == "XSMax"
+        ? IphoneXSMax
+        : valueModel == "11"
+        ? Iphone11
+        : valueModel == "11pro"
+        ? Iphone11pro
+        : IphoneXS;
     setWidthImage(src.width / 4);
     setHeightImage(src.height / 4);
   }, [valueModel]);
-
-  console.log(heightImage);
 
   return (
     <main>
@@ -60,6 +73,10 @@ export default function Home() {
             </option>
             <option value={"X"}>iphone X</option>
             <option value={"XR"}>iphone XR</option>
+            <option value={"XS"}>iphone XS</option>
+            <option value={"XSMax"}>iphone XS Max</option>
+            <option value={"11"}>iphone 11</option>
+            <option value={"11pro"}>iphone 11 pro</option>
           </select>
         </div>
         <div className="w-full">
@@ -73,7 +90,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <section className="flex justify-center my-10">
+      <section className="flex justify-center py-11">
         <div className="relative">
           {valueModel === "X" ? (
             <Image
@@ -85,7 +102,7 @@ export default function Home() {
               height={IphoneX.height / 4}
               quality={100}
             />
-          ) : (
+          ) : valueModel === "XR" ? (
             <Image
               className="object-cover"
               priority
@@ -95,12 +112,54 @@ export default function Home() {
               height={IphoneXR.height / 4}
               quality={100}
             />
+          ) : valueModel === "XSMax" ? (
+            <Image
+              className="object-cover"
+              priority
+              src={IphoneXSMax}
+              alt="iphone XS MAX"
+              width={IphoneXSMax.width / 4}
+              height={IphoneXSMax.height / 4}
+              quality={100}
+            />
+          ) : valueModel === "11" ? (
+            <Image
+              className="object-cover"
+              priority
+              src={Iphone11}
+              alt="iphone 11"
+              width={Iphone11.width / 1.7}
+              height={Iphone11.height / 1.7}
+              quality={100}
+            />
+          ) : valueModel === "11pro" ? (
+            <Image
+              className="object-cover"
+              priority
+              src={Iphone11pro}
+              alt="iphone 11 pro"
+              width={Iphone11pro.width / 1.45}
+              height={Iphone11pro.height / 1.45}
+              quality={100}
+            />
+          ) : (
+            <Image
+              className="object-cover"
+              priority
+              src={IphoneXS}
+              alt="iphone XS"
+              width={IphoneXS.width / 4}
+              height={IphoneXS.height / 4}
+              quality={100}
+            />
           )}
 
           <div
             className={`absolute -z-10 top-0 ${
-              valueModel === "X"
-                ? "rounded-t-[50px] rounded-b-[50px]"
+              valueModel === "X" || valueModel === "XR"
+                ? "rounded-t-[35px] rounded-b-[35px]"
+                : valueModel === "XSMax"
+                ? "rounded-t-[30px] rounded-b-[30px]"
                 : "rounded-t-[40px] rounded-b-[40px]"
             } overflow-hidden h-full`}
           >
@@ -110,7 +169,7 @@ export default function Home() {
                   key={index}
                   src={imageUrl}
                   alt={`Uploaded Image ${index + 1}`}
-                  className={`object-cover ${
+                  className={`object-cover w-full ${
                     value === 1 ? "h-full" : `h-[50%]`
                   }`}
                   width={widthImage}
