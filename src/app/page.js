@@ -8,6 +8,10 @@ import IphoneXS from "/public/images/iphoneXS.png";
 import IphoneXSMax from "/public/images/iphoneXSMax.png";
 import Iphone11 from "/public/images/iphone11.png";
 import Iphone11pro from "/public/images/iphone11pro.png";
+import Iphone11proMax from "/public/images/iphone11proMax.png";
+import IphoneSEda from "/public/images/iphoneSEda.png";
+import Iphone12mini from "/public/images/iphone12mini.png";
+import Iphone12 from "/public/images/iphone12.png";
 
 export default function Home() {
   const [value, setValue] = useState(1);
@@ -37,6 +41,14 @@ export default function Home() {
         ? Iphone11
         : valueModel == "11pro"
         ? Iphone11pro
+        : valueModel == "11proMax"
+        ? Iphone11proMax
+        : valueModel == "SE2da"
+        ? IphoneSEda
+        : valueModel == "12mini"
+        ? Iphone12mini
+        : valueModel == "12"
+        ? Iphone12
         : IphoneXS;
     setWidthImage(src.width / 4);
     setHeightImage(src.height / 4);
@@ -71,12 +83,16 @@ export default function Home() {
             <option value={""} defaultValue disabled>
               Seleccionar Modelo
             </option>
-            <option value={"X"}>iphone X</option>
-            <option value={"XR"}>iphone XR</option>
-            <option value={"XS"}>iphone XS</option>
-            <option value={"XSMax"}>iphone XS Max</option>
-            <option value={"11"}>iphone 11</option>
-            <option value={"11pro"}>iphone 11 pro</option>
+            <option value={"X"}>iPhone X</option>
+            <option value={"XR"}>iPhone XR</option>
+            <option value={"XS"}>iPhone XS</option>
+            <option value={"XSMax"}>iPhone XS Max</option>
+            <option value={"11"}>iPhone 11</option>
+            <option value={"11pro"}>iPhone 11 pro</option>
+            <option value={"11proMax"}>iPhone 11 pro Max</option>
+            <option value={"SE2da"}>iPhone SE (2da generación)</option>
+            <option value={"12mini"}>iPhone 12 mini</option>
+            <option value={"12"}>iPhone 12</option>
           </select>
         </div>
         <div className="w-full">
@@ -97,7 +113,7 @@ export default function Home() {
               className="object-cover"
               priority
               src={IphoneX}
-              alt="iphone X"
+              alt="iPhone X"
               width={IphoneX.width / 4}
               height={IphoneX.height / 4}
               quality={100}
@@ -107,7 +123,7 @@ export default function Home() {
               className="object-cover"
               priority
               src={IphoneXR}
-              alt="iphone XR"
+              alt="iPhone XR"
               width={IphoneXR.width / 4}
               height={IphoneXR.height / 4}
               quality={100}
@@ -117,7 +133,7 @@ export default function Home() {
               className="object-cover"
               priority
               src={IphoneXSMax}
-              alt="iphone XS MAX"
+              alt="iPhone XS MAX"
               width={IphoneXSMax.width / 4}
               height={IphoneXSMax.height / 4}
               quality={100}
@@ -127,7 +143,7 @@ export default function Home() {
               className="object-cover"
               priority
               src={Iphone11}
-              alt="iphone 11"
+              alt="iPhone 11"
               width={Iphone11.width / 1.7}
               height={Iphone11.height / 1.7}
               quality={100}
@@ -137,9 +153,49 @@ export default function Home() {
               className="object-cover"
               priority
               src={Iphone11pro}
-              alt="iphone 11 pro"
+              alt="iPhone 11 pro"
               width={Iphone11pro.width / 1.45}
               height={Iphone11pro.height / 1.45}
+              quality={100}
+            />
+          ) : valueModel === "11proMax" ? (
+            <Image
+              className="object-cover"
+              priority
+              src={Iphone11proMax}
+              alt="iPhone 11 pro Max"
+              width={Iphone11proMax.width / 2}
+              height={Iphone11proMax.height / 2}
+              quality={100}
+            />
+          ) : valueModel === "SE2da" ? (
+            <Image
+              className="object-cover"
+              priority
+              src={IphoneSEda}
+              alt="iPhone SE (2da generación)"
+              width={IphoneSEda.width / 1.3}
+              height={IphoneSEda.height / 1.3}
+              quality={100}
+            />
+          ) : valueModel === "12mini" ? (
+            <Image
+              className="object-cover"
+              priority
+              src={Iphone12mini}
+              alt="iPhone 12 mini"
+              width={Iphone12mini.width}
+              height={Iphone12mini.height}
+              quality={100}
+            />
+          ) : valueModel === "12" ? (
+            <Image
+              className="object-cover"
+              priority
+              src={Iphone12}
+              alt="iPhone 12"
+              width={Iphone12.width / 1.9}
+              height={Iphone12.height / 1.9}
               quality={100}
             />
           ) : (
@@ -147,7 +203,7 @@ export default function Home() {
               className="object-cover"
               priority
               src={IphoneXS}
-              alt="iphone XS"
+              alt="iPhone XS"
               width={IphoneXS.width / 4}
               height={IphoneXS.height / 4}
               quality={100}
@@ -161,7 +217,7 @@ export default function Home() {
                 : valueModel === "XSMax"
                 ? "rounded-t-[30px] rounded-b-[30px]"
                 : "rounded-t-[40px] rounded-b-[40px]"
-            } overflow-hidden h-full`}
+            } overflow-hidden h-full w-full`}
           >
             {showImages &&
               imageUrls.map((imageUrl, index) => (
@@ -173,7 +229,7 @@ export default function Home() {
                     value === 1 ? "h-full" : `h-[50%]`
                   }`}
                   width={widthImage}
-                  height={heightImage / 2}
+                  height={heightImage}
                 />
               ))}
           </div>

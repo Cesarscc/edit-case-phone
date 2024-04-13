@@ -1,6 +1,6 @@
 // ImageUpload.js
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function ImageUpload({
   imageUrls,
@@ -14,6 +14,8 @@ export default function ImageUpload({
   const fileInputRef2 = useRef(null); // Referencia para el segundo input
   const fileInputRef3 = useRef(null); // Referencia para el segundo input
 
+  const [reset, setReset] = useState(false); // Para resetear los inputs y borrar las imágenes
+
   useEffect(() => {
     setImageUrls([]);
     setShowImages(false);
@@ -26,7 +28,7 @@ export default function ImageUpload({
     if (fileInputRef3.current) {
       fileInputRef3.current.value = ""; // Limpiar el input de tipo file
     }
-  }, [cantidad, setImageUrls, setShowImages, valueModel]);
+  }, [cantidad, setImageUrls, setShowImages, valueModel, reset]);
 
   const handleImageUpload = (event) => {
     const files = event.target.files;
@@ -78,13 +80,22 @@ export default function ImageUpload({
           />
         </div>
       )}
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center gap-5">
         <button
           onClick={handleShowImages}
           disabled={imageUrls.length === 0}
-          className="bg-[#784a0f] text-white px-4 py-2 rounded-md disabled:bg-[#f5cd0b] disabled:cursor-not-allowed font-semibold"
+          className="bg-[#784a0f] text-white w-[250px] py-1 rounded-md disabled:bg-[#f5cd0b] disabled:cursor-not-allowed font-semibold"
         >
-          Mostrar Imágenes
+          {!showImages ? "Ver en Case" : "Dejar de ver"}
+        </button>
+        <button
+          onClick={() => {
+            setReset(!reset);
+          }}
+          disabled={imageUrls.length === 0}
+          className="bg-[#784a0f] text-white w-[250px] py-1 rounded-md disabled:bg-[#f5cd0b] disabled:cursor-not-allowed font-semibold"
+        >
+          Reiniciar
         </button>
       </div>
     </div>
