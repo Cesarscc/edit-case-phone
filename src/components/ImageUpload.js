@@ -55,7 +55,7 @@ export default function ImageUpload({
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            className="mb-4"
+            className="mb-4 text-[12px] xl:text-[16px]"
             multiple={false} // Esto permite seleccionar múltiples archivos
             ref={fileInputRef1}
           />
@@ -63,7 +63,7 @@ export default function ImageUpload({
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            className="mb-4"
+            className="mb-4 text-[12px] xl:text-[16px]"
             multiple={false} // Esto permite seleccionar múltiples archivos
             ref={fileInputRef2}
           />
@@ -74,13 +74,13 @@ export default function ImageUpload({
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            className="mb-4"
+            className="mb-4 text-[12px] xl:text-[16px]"
             multiple={false} // Esto permite seleccionar múltiples archivos
             ref={fileInputRef3}
           />
         </div>
       )}
-      <div className="flex flex-col justify-center items-center gap-5">
+      <div className="flex flex-col justify-center items-center gap-5 mt-8 lg:mt-0 space-y-5 lg:space-y-0">
         <button
           onClick={handleShowImages}
           disabled={imageUrls.length === 0}

@@ -12,6 +12,8 @@ import Iphone11proMax from "/public/images/iphone11proMax.png";
 import IphoneSEda from "/public/images/iphoneSEda.png";
 import Iphone12mini from "/public/images/iphone12mini.png";
 import Iphone12 from "/public/images/iphone12.png";
+import Iphone12pro from "/public/images/iphone12pro.png";
+import Iphone12proMax from "/public/images/iphone12proMax.png";
 
 export default function Home() {
   const [value, setValue] = useState(1);
@@ -49,6 +51,10 @@ export default function Home() {
         ? Iphone12mini
         : valueModel == "12"
         ? Iphone12
+        : valueModel == "12pro"
+        ? Iphone12pro
+        : valueModel == "12proMax"
+        ? Iphone12proMax
         : IphoneXS;
     setWidthImage(src.width / 4);
     setHeightImage(src.height / 4);
@@ -56,9 +62,9 @@ export default function Home() {
 
   return (
     <main>
-      <div className="grid grid-cols-3 items-center justify-items-center bg-[#fefec7]">
+      <div className="grid grid-cols-1 lg:grid-cols-3 items-center justify-items-center bg-[#fefec7]">
         <div className="flex flex-col justify-center items-center space-y-5">
-          <h2 className="font-extrabold font-mono text-center text-2xl">
+          <h2 className="font-extrabold font-mono text-center text-lg md:text-2xl">
             Elige la cantidad de imágenes
           </h2>
           <select
@@ -72,8 +78,8 @@ export default function Home() {
             <option value={2}>2</option>
           </select>
         </div>
-        <div className="flex flex-col justify-center items-center space-y-5">
-          <h2 className="font-extrabold font-mono text-center text-2xl">
+        <div className="flex flex-col justify-center items-center space-y-5 mt-10 lg:mt-0">
+          <h2 className="font-extrabold font-mono text-center text-lg md:text-2xl">
             Elige el Modelo de Celular
           </h2>
           <select
@@ -93,6 +99,8 @@ export default function Home() {
             <option value={"SE2da"}>iPhone SE (2da generación)</option>
             <option value={"12mini"}>iPhone 12 mini</option>
             <option value={"12"}>iPhone 12</option>
+            <option value={"12pro"}>iPhone 12 pro</option>
+            <option value={"12proMax"}>iPhone 12 pro Max</option>
           </select>
         </div>
         <div className="w-full">
@@ -196,6 +204,26 @@ export default function Home() {
               alt="iPhone 12"
               width={Iphone12.width / 1.9}
               height={Iphone12.height / 1.9}
+              quality={100}
+            />
+          ) : valueModel === "12pro" ? (
+            <Image
+              className="object-cover"
+              priority
+              src={Iphone12pro}
+              alt="iPhone 12 pro"
+              width={Iphone12pro.width / 1.9}
+              height={Iphone12pro.height / 1.9}
+              quality={100}
+            />
+          ) : valueModel === "12proMax" ? (
+            <Image
+              className="object-cover"
+              priority
+              src={Iphone12proMax}
+              alt="iPhone 12 pro Max"
+              width={Iphone12proMax.width / 1.5}
+              height={Iphone12proMax.height / 1.5}
               quality={100}
             />
           ) : (
