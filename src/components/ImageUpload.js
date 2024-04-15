@@ -8,7 +8,6 @@ export default function ImageUpload({
   setShowImages,
   showImages,
   cantidad,
-  valueModel,
 }) {
   const fileInputRef1 = useRef(null); // Referencia para el primer input
   const fileInputRef2 = useRef(null); // Referencia para el segundo input
@@ -54,11 +53,6 @@ export default function ImageUpload({
     }
   };
 
-  const handleShowImages = () => {
-    // Lógica para mostrar las imágenes
-    setShowImages(!showImages);
-  };
-
   return (
     <div className="flex-col py-10">
       {cantidad > 1 ? (
@@ -93,13 +87,6 @@ export default function ImageUpload({
         </div>
       )}
       <div className="flex flex-col justify-center items-center gap-5 mt-8 lg:mt-0 space-y-5 lg:space-y-0">
-        {/*  <button
-          onClick={handleShowImages}
-          disabled={imageUrls.length === 0}
-          className="bg-[#784a0f] text-white w-[250px] py-1 rounded-md disabled:bg-[#f5cd0b] disabled:cursor-not-allowed font-semibold"
-        >
-          {!showImages ? "Ver en Case" : "Dejar de ver"}
-        </button> */}
         <button
           onClick={() => {
             setReset(!reset);
