@@ -64,12 +64,12 @@ export default function Home() {
     <main>
       <div className="grid grid-cols-1 lg:grid-cols-3 items-center justify-items-center bg-[#fefec7]">
         <div className="flex flex-col justify-center items-center space-y-5">
-          <h2 className="font-extrabold font-mono text-center text-lg md:text-2xl">
+          <h2 className="font-extrabold font-mono text-center text-lg md:text-2xl text-black">
             Elige la cantidad de imágenes
           </h2>
           <select
             onChange={handleChange}
-            className="appearance-none text-center bg-[#f5cd0b] text-white font-semibold"
+            className="appearance-none text-center bg-[#f5bb0b] text-white font-semibold select select-warning w-full max-w-xs"
           >
             <option value={""} defaultValue disabled>
               Seleccionar Cantidad
@@ -79,12 +79,12 @@ export default function Home() {
           </select>
         </div>
         <div className="flex flex-col justify-center items-center space-y-5 mt-10 lg:mt-0">
-          <h2 className="font-extrabold font-mono text-center text-lg md:text-2xl">
+          <h2 className="font-extrabold font-mono text-center text-lg md:text-2xl text-black">
             Elige el Modelo de Celular
           </h2>
           <select
             onChange={handleChangeModel}
-            className="appearance-none text-center bg-[#f5cd0b] text-white font-semibold"
+            className="appearance-none text-center bg-[#f5bb0b] text-white font-semibold select select-warning w-full max-w-xs"
           >
             <option value={""} defaultValue disabled>
               Seleccionar Modelo
@@ -110,12 +110,11 @@ export default function Home() {
             setShowImages={setShowImages}
             showImages={showImages}
             cantidad={value}
-            valueModel={valueModel}
           />
         </div>
       </div>
       <section className="flex justify-center py-11">
-        <div className="relative">
+        <div className="relative z-10">
           {valueModel === "X" ? (
             <Image
               className="object-cover"
@@ -252,6 +251,7 @@ export default function Home() {
                 <Image
                   key={index}
                   src={imageUrl}
+                  style={{ color: "transparent" }}
                   alt={`Uploaded Image ${index + 1}`}
                   className={`object-cover w-full ${
                     value === 1 ? "h-full" : `h-[50%]`
