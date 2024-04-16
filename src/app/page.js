@@ -14,6 +14,9 @@ import Iphone12mini from "/public/images/iphone12mini.png";
 import Iphone12 from "/public/images/iphone12.png";
 import Iphone12pro from "/public/images/iphone12pro.png";
 import Iphone12proMax from "/public/images/iphone12proMax.png";
+import Iphone13mini from "/public/images/iphone13mini.png";
+import Iphone13 from "/public/images/iphone13.png";
+import Iphone13pro from "/public/images/iphone13pro.png";
 
 export default function Home() {
   const [value, setValue] = useState(1);
@@ -55,6 +58,10 @@ export default function Home() {
         ? Iphone12pro
         : valueModel == "12proMax"
         ? Iphone12proMax
+        : valueModel == "13mini"
+        ? Iphone13mini
+        : valueModel == "13pro"
+        ? Iphone13pro
         : IphoneXS;
     setWidthImage(src.width / 4);
     setHeightImage(src.height / 4);
@@ -101,6 +108,9 @@ export default function Home() {
             <option value={"12"}>iPhone 12</option>
             <option value={"12pro"}>iPhone 12 pro</option>
             <option value={"12proMax"}>iPhone 12 pro Max</option>
+            <option value={"13mini"}>iPhone 13 mini</option>
+            <option value={"13"}>iPhone 13</option>
+            <option value={"13pro"}>iPhone 13 pro</option>
           </select>
         </div>
         <div className="w-full">
@@ -113,7 +123,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <section className="flex justify-center py-11">
+      <section className="flex justify-center py-20">
         <div className="relative z-10">
           {valueModel === "X" ? (
             <Image
@@ -225,6 +235,36 @@ export default function Home() {
               height={Iphone12proMax.height / 1.5}
               quality={100}
             />
+          ) : valueModel === "13mini" ? (
+            <Image
+              className="object-cover"
+              priority
+              src={Iphone13mini}
+              alt="iPhone 13 mini"
+              width={Iphone13mini.width * 1.4}
+              height={Iphone13mini.height * 1.4}
+              quality={100}
+            />
+          ) : valueModel === "13" ? (
+            <Image
+              className="object-cover"
+              priority
+              src={Iphone13}
+              alt="iPhone 13"
+              width={Iphone13.width}
+              height={Iphone13.height}
+              quality={100}
+            />
+          ) : valueModel === "13pro" ? (
+            <Image
+              className="object-cover"
+              priority
+              src={Iphone13pro}
+              alt="iPhone 13 pro"
+              width={Iphone13pro.width}
+              height={Iphone13pro.height}
+              quality={100}
+            />
           ) : (
             <Image
               className="object-cover"
@@ -243,6 +283,10 @@ export default function Home() {
                 ? "rounded-t-[35px] rounded-b-[35px]"
                 : valueModel === "XSMax"
                 ? "rounded-t-[30px] rounded-b-[30px]"
+                : valueModel === "13"
+                ? "rounded-t-[50px] rounded-b-[50px]"
+                : valueModel === "13pro"
+                ? "rounded-t-[46px] rounded-b-[46px]"
                 : "rounded-t-[40px] rounded-b-[40px]"
             } overflow-hidden h-full w-full`}
           >
