@@ -84,7 +84,7 @@ export default function ImageUpload({
   };
 
   return (
-    <div className="flex-col py-10">
+    <div className="flex-col py-5 md:py-8">
       {cantidad > 1 ? (
         <div className="flex flex-col justify-center items-center">
           <input
@@ -112,13 +112,13 @@ export default function ImageUpload({
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            className="mb-4 text-[12px] xl:text-[16px] file-input file-input-bordered file-input-warning w-full max-w-xs"
+            className="md:mb-4 text-[12px] xl:text-[16px] file-input file-input-bordered file-input-warning w-full max-w-xs"
             multiple={false} // Esto permite seleccionar múltiples archivos
             ref={fileInputRef3}
           />
         </div>
       )}
-      <div className="flex flex-col justify-center items-center gap-5 mt-8 lg:mt-0 space-y-5 lg:space-y-0">
+      <div className="flex flex-col justify-center items-center gap-5 mt-4 md:mt-5 lg:mt-0 space-y-5 lg:space-y-0">
         <button
           onClick={() => {
             setReset(!reset);

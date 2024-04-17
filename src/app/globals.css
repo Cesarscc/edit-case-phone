@@ -5,3 +5,24 @@
 body{
     background-color: white;
 }
+
+.select {
+    min-height: 28px;
+    height: 28px;
+}
+
+.file-input {
+    height: 28px;
+}
+
+@media screen and (min-width: 640px) {
+    .file-input{
+        height: 3rem;
+    }
+
+        .select {
+            min-height: 3rem;
+            height: 3rem;
+        }
+    
+}

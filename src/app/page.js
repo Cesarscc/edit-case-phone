@@ -117,13 +117,13 @@ export default function Home() {
   return (
     <main>
       <div className="grid grid-cols-1 lg:grid-cols-3 items-center justify-items-center bg-[#fefec7]">
-        <div className="flex flex-col justify-center items-center space-y-5">
-          <h2 className="font-extrabold font-mono text-center text-lg md:text-2xl text-black">
+        <div className="flex flex-row sm:flex-col justify-center items-center md:space-y-5 mt-2 sm:mt-0">
+          <h2 className="font-extrabold font-mono text-center text-sm sm:text-lg md:text-2xl text-black">
             Elige la cantidad de imágenes
           </h2>
           <select
             onChange={handleChange}
-            className="appearance-none text-center bg-[#f5bb0b] text-white font-semibold select select-warning w-full max-w-xs"
+            className="appearance-none text-center bg-[#f5bb0b] text-white font-semibold select select-warning w-1/3 sm:w-full max-w-xs ml-3 sm:ml-0"
           >
             <option value={""} defaultValue disabled>
               Seleccionar Cantidad
@@ -132,13 +132,13 @@ export default function Home() {
             <option value={2}>2</option>
           </select>
         </div>
-        <div className="flex flex-col justify-center items-center space-y-5 mt-10 lg:mt-0">
-          <h2 className="font-extrabold font-mono text-center text-lg md:text-2xl text-black">
+        <div className="flex flex-row sm:flex-col justify-center items-center md:space-y-5 mt-4 md:mt-5 lg:mt-0">
+          <h2 className="font-extrabold font-mono text-center text-sm sm:text-lg md:text-2xl text-black">
             Elige el Modelo de Celular
           </h2>
           <select
             onChange={handleChangeModel}
-            className="appearance-none text-center bg-[#f5bb0b] text-white font-semibold select select-warning w-full max-w-xs"
+            className="appearance-none text-center bg-[#f5bb0b] text-white font-semibold select select-warning w-1/3 sm:w-full max-w-xs ml-3 sm:ml-0"
           >
             <option value={""} defaultValue disabled>
               Seleccionar Modelo
@@ -171,8 +171,8 @@ export default function Home() {
           />
         </div>
       </div>
-      <section className="flex justify-around py-20">
-        <div className="relative z-10 h-full">
+      <section className="flex flex-col md:flex-row justify-center items-center py-5 md:py-20">
+        <div className="relative z-10 h-full order-2 md:order-1 mt-10 md:mt-0">
           {valueModel === "X" ? (
             <Image
               className="object-cover "
@@ -378,11 +378,12 @@ export default function Home() {
               ))}
           </div>
         </div>
-        <div className="w-[70%] pl-40">
+        <div className="w-full md:w-[65%] md:mx-5 lg:mx-0 lg:pl-24 order-1 md:order-2">
           <div className="flex justify-center">
-            <fieldset className="border-2 p-5 my-10 w-1/2">
-              <legend>Seleccione la imagen</legend>
-
+            <fieldset className="border-4 pl-5 md:p-5 mb-4 md:mb-10 w-3/4 sm:w-1/2">
+              <legend className="text-sm md:text-base">
+                Seleccione la imagen
+              </legend>
               <div>
                 <input
                   type="radio"
@@ -392,7 +393,10 @@ export default function Home() {
                   checked={selectedImage === "1"}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="imagen1"> Imagen 1</label>
+                <label className="text-xs md:text-base" htmlFor="imagen1">
+                  {" "}
+                  Imagen 1
+                </label>
               </div>
 
               <div>
@@ -404,13 +408,18 @@ export default function Home() {
                   checked={selectedImage === "2"}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="imagen2"> Imagen 2</label>
+                <label className="text-xs md:text-base" htmlFor="imagen2">
+                  {" "}
+                  Imagen 2
+                </label>
               </div>
-              <p>Imagen seleccionada: {selectedImage}</p>
+              <p className="text-xs md:text-base">
+                Imagen seleccionada: {selectedImage}
+              </p>
             </fieldset>
           </div>
-          <div className="grid grid-cols-2 gap-10">
-            <div className="flex flex-col items-center justify-center border-2 border-black pb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 place-items-center md:place-items-stretch md:gap-4 lg:gap-10 space-y-3 mx-2">
+            <div className="flex flex-col items-center justify-center border-2 border-black pb-10 w-full sm:w-3/4 md:w-auto">
               <p className="font-semibold text-2xl tracking-wider text-black">
                 Rotation
               </p>
@@ -420,7 +429,7 @@ export default function Home() {
                 setRotations={setRotations}
               />
             </div>
-            <div className="flex flex-col items-center justify-center border-2  border-black pb-10">
+            <div className="flex flex-col items-center justify-center border-2 border-black pb-10 w-full sm:w-3/4 md:w-auto ">
               <p className="font-semibold text-2xl tracking-wider text-black">
                 Zoom
               </p>
@@ -430,37 +439,37 @@ export default function Home() {
                 setZooms={setZooms}
               />
             </div>
-            <div className="flex flex-col items-center justify-center border-2  border-black pb-10">
+            <div className="flex flex-col items-center justify-center border-2 border-black pb-5 w-full sm:w-3/4 md:w-auto">
               <p className="font-semibold text-2xl tracking-wider text-black">
                 Move
               </p>
-              <div className="flex justify-center gap-5 w-full pt-5">
+              <div className="flex justify-center gap-3 lg:gap-5 w-full pt-5">
                 <button
-                  className="lg:w-7 xl:w-8 2xl:w-10 lg:h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  className="w-7 xl:w-8 2xl:w-10 h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white text-lg lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
                   onClick={() => handleYUp(selectedImage)}
                 >
                   ↑
                 </button>
                 <button
-                  className="lg:w-7 xl:w-8 2xl:w-10 lg:h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  className="w-7 xl:w-8 2xl:w-10 h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white text-lg lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
                   onClick={() => handleYDown(selectedImage)}
                 >
                   ↓
                 </button>
                 <button
-                  className="flex items-center lg:w-7 xl:w-8 2xl:w-10 lg:h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  className="flex justify-center items-center w-7 xl:w-8 2xl:w-10 h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white text-lg lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
                   onClick={() => handleXRigth(selectedImage)}
                 >
                   →
                 </button>
                 <button
-                  className="flex items-center lg:w-7 xl:w-8 2xl:w-10 lg:h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  className="flex justify-center items-center w-7 xl:w-8 2xl:w-10 h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white text-lg lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
                   onClick={() => handleXLeft(selectedImage)}
                 >
                   ←
                 </button>
                 <button
-                  className="lg:w-16 lg:h-7 xl:w-20 xl:h-8 2xl:w-24 2xl:h-10 bg-slate-400 rounded-xl text-white lg:text-base xl:text-lg 2xl:text-2xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms] font-semibold"
+                  className="w-14 h-7 lg:w-16 xl:w-20 xl:h-8 2xl:w-24 2xl:h-10 bg-slate-400 rounded-xl text-white text-sm lg:text-base xl:text-lg 2xl:text-2xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms] font-semibold"
                   onClick={() => {
                     setValueX([0, 0]);
                     setValueY([0, 0]);

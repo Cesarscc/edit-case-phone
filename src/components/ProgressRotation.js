@@ -15,10 +15,10 @@ const ProgressRotation = ({ selectedImage, rotations, setRotations }) => {
 
   return (
     <div
-      style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}
+      style={{ display: "flex", justifyContent: "center", marginTop: "15px" }}
     >
       <div
-        className="md:w-[150px] lg:w-[200px] xl:w-[300px] 2xl:w-[350px]"
+        className="w-[250px] sm:w-[350px] md:w-[150px] lg:w-[200px] xl:w-[300px] 2xl:w-[350px]"
         style={{ position: "relative" }}
       >
         <Range
@@ -65,7 +65,7 @@ const ProgressRotation = ({ selectedImage, rotations, setRotations }) => {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            marginTop: "10px",
+            marginTop: "0px",
           }}
         >
           <div
