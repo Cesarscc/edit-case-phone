@@ -20,6 +20,8 @@ import Iphone13pro from "/public/images/iphone13pro.png";
 import Iphone13proMax from "/public/images/iphone13proMax.png";
 import ProgressRotation from "../components/ProgressRotation";
 import ProgressZoom from "@/components/ProgressZoom";
+import ProgressBlur from "@/components/ProgressBlur";
+import ProgressBrightness from "@/components/ProgressBrightness";
 
 export default function Home() {
   const [value, setValue] = useState(1);
@@ -42,6 +44,8 @@ export default function Home() {
   const [selectedImage, setSelectedImage] = useState("");
   const [valueX, setValueX] = useState([0, 0]);
   const [valueY, setValueY] = useState([0, 0]);
+  const [valueBlur, setValueBlur] = useState([0, 0]);
+  const [valueBrightness, setValueBrightness] = useState([100, 100]);
 
   useEffect(() => {
     const src =
@@ -136,6 +140,24 @@ export default function Home() {
     }
     if (selectedImage == 2) {
       setRotations([rotations[0], 0]);
+    }
+  };
+
+  const handleResetBlur = () => {
+    if (selectedImage == 1) {
+      setValueBlur([0, valueBlur[1]]);
+    }
+    if (selectedImage == 2) {
+      setValueBlur([valueBlur[0], 0]);
+    }
+  };
+
+  const handleResetBrightness = () => {
+    if (selectedImage == 1) {
+      setValueBrightness([0, valueBrightness[1]]);
+    }
+    if (selectedImage == 2) {
+      setValueBrightness([valueBrightness[0], 0]);
     }
   };
 
@@ -390,6 +412,7 @@ export default function Home() {
                     zIndex: `${
                       (index + parseInt(selectedImage)) * (-1) ** selectedImage
                     }`,
+                    filter: `blur(${valueBlur[index]}px) brightness(${valueBrightness[index]}%)`,
                   }}
                   alt={`Uploaded Image ${index + 1}`}
                   className={`absolute top-[${
@@ -515,6 +538,44 @@ export default function Home() {
                 >
                   Reset
                 </button>
+              </div>
+            </div>
+            <div>
+              <div className="flex flex-col items-center justify-center border-2 border-black w-full sm:w-[85%] md:w-auto ">
+                <div className="flex justify-evenly w-full">
+                  <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
+                    Blur
+                  </p>
+                  <p
+                    className="text-xl cursor-pointer"
+                    onClick={handleResetBlur}
+                  >
+                    ↺
+                  </p>
+                </div>
+                <ProgressBlur
+                  selectedImage={selectedImage}
+                  valueBlur={valueBlur}
+                  setValueBlur={setValueBlur}
+                />
+              </div>
+              <div className="flex flex-col items-center justify-center border-2 border-black w-full sm:w-[85%] md:w-auto ">
+                <div className="flex justify-evenly w-full">
+                  <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
+                    Brightness
+                  </p>
+                  <p
+                    className="text-xl cursor-pointer"
+                    onClick={handleResetBrightness}
+                  >
+                    ↺
+                  </p>
+                </div>
+                <ProgressBrightness
+                  selectedImage={selectedImage}
+                  valueBrightness={valueBrightness}
+                  setValueBrightness={setValueBrightness}
+                />
               </div>
             </div>
           </div>
