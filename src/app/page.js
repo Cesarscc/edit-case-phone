@@ -379,34 +379,36 @@ export default function Home() {
           </div>
         </div>
         <div className="w-[70%] pl-40">
-          <fieldset className="border-2 p-5 my-10 w-1/2">
-            <legend>Seleccione la imagen</legend>
+          <div className="flex justify-center">
+            <fieldset className="border-2 p-5 my-10 w-1/2">
+              <legend>Seleccione la imagen</legend>
 
-            <div>
-              <input
-                type="radio"
-                id="imagen1"
-                name="drone"
-                value="1"
-                checked={selectedImage === "1"}
-                onChange={handleInputChange}
-              />
-              <label htmlFor="imagen1"> Imagen 1</label>
-            </div>
+              <div>
+                <input
+                  type="radio"
+                  id="imagen1"
+                  name="drone"
+                  value="1"
+                  checked={selectedImage === "1"}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="imagen1"> Imagen 1</label>
+              </div>
 
-            <div>
-              <input
-                type="radio"
-                id="imagen2"
-                name="drone"
-                value="2"
-                checked={selectedImage === "2"}
-                onChange={handleInputChange}
-              />
-              <label htmlFor="imagen2"> Imagen 2</label>
-            </div>
-            <p>Imagen seleccionada: {selectedImage}</p>
-          </fieldset>
+              <div>
+                <input
+                  type="radio"
+                  id="imagen2"
+                  name="drone"
+                  value="2"
+                  checked={selectedImage === "2"}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="imagen2"> Imagen 2</label>
+              </div>
+              <p>Imagen seleccionada: {selectedImage}</p>
+            </fieldset>
+          </div>
           <div className="grid grid-cols-2 gap-10">
             <div className="flex flex-col items-center justify-center border-2 border-black pb-10">
               <p className="font-semibold text-2xl tracking-wider text-black">
@@ -434,31 +436,31 @@ export default function Home() {
               </p>
               <div className="flex justify-center gap-5 w-full pt-5">
                 <button
-                  className="w-10 h-10 bg-slate-400 rounded-full text-white text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  className="lg:w-7 xl:w-8 2xl:w-10 lg:h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
                   onClick={() => handleYUp(selectedImage)}
                 >
                   ↑
                 </button>
                 <button
-                  className="w-10 h-10 bg-slate-400 rounded-full text-white text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  className="lg:w-7 xl:w-8 2xl:w-10 lg:h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
                   onClick={() => handleYDown(selectedImage)}
                 >
                   ↓
                 </button>
                 <button
-                  className="w-10 h-10 bg-slate-400 rounded-full text-white text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  className="flex items-center lg:w-7 xl:w-8 2xl:w-10 lg:h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
                   onClick={() => handleXRigth(selectedImage)}
                 >
                   →
                 </button>
                 <button
-                  className="w-10 h-10 bg-slate-400 rounded-full text-white text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  className="flex items-center lg:w-7 xl:w-8 2xl:w-10 lg:h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
                   onClick={() => handleXLeft(selectedImage)}
                 >
                   ←
                 </button>
                 <button
-                  className="w-24 h-10 bg-slate-400 rounded-xl text-white text-2xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms] font-semibold"
+                  className="lg:w-16 lg:h-7 xl:w-20 xl:h-8 2xl:w-24 2xl:h-10 bg-slate-400 rounded-xl text-white lg:text-base xl:text-lg 2xl:text-2xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms] font-semibold"
                   onClick={() => {
                     setValueX([0, 0]);
                     setValueY([0, 0]);

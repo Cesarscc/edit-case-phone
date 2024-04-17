@@ -17,7 +17,10 @@ const ProgressZoom = ({ selectedImage, zooms, setZooms }) => {
     <div
       style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}
     >
-      <div style={{ width: "350px", position: "relative" }}>
+      <div
+        className="md:w-[150px] lg:w-[200px] xl:w-[300px] 2xl:w-[350px]"
+        style={{ position: "relative" }}
+      >
         <Range
           step={1}
           min={0}
@@ -53,7 +56,8 @@ const ProgressZoom = ({ selectedImage, zooms, setZooms }) => {
           )}
         />
         <output
-          style={{ marginTop: "20px", textAlign: "center", fontSize: "20px" }}
+          style={{ marginTop: "20px", textAlign: "center" }}
+          className="md:text-xs lg:text-sm xl:text-base"
         >
           {values[0]}
         </output>
@@ -70,6 +74,7 @@ const ProgressZoom = ({ selectedImage, zooms, setZooms }) => {
               left: "0",
               transform: "translateX(-50%)",
             }}
+            className="md:text-xs lg:text-sm xl:text-base"
           >
             0
           </div>
@@ -79,6 +84,7 @@ const ProgressZoom = ({ selectedImage, zooms, setZooms }) => {
               left: "25%",
               transform: "translateX(-50%)",
             }}
+            className="md:text-xs lg:text-sm xl:text-base"
           >
             50
           </div>
@@ -88,6 +94,7 @@ const ProgressZoom = ({ selectedImage, zooms, setZooms }) => {
               left: "50%",
               transform: "translateX(-50%)",
             }}
+            className="md:text-xs lg:text-sm xl:text-base"
           >
             100
           </div>
@@ -97,6 +104,7 @@ const ProgressZoom = ({ selectedImage, zooms, setZooms }) => {
               left: "75%",
               transform: "translateX(-50%)",
             }}
+            className="md:text-xs lg:text-sm xl:text-base"
           >
             150
           </div>
@@ -106,6 +114,7 @@ const ProgressZoom = ({ selectedImage, zooms, setZooms }) => {
               right: "0",
               transform: "translateX(50%)",
             }}
+            className="md:text-xs lg:text-sm xl:text-base"
           >
             200
           </div>
