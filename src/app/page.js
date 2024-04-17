@@ -26,6 +26,8 @@ import ProgressContrast from "@/components/ProgressContrast";
 import ProgressGrayScale from "@/components/ProgressGrayScale";
 import ProgressSaturate from "@/components/ProgressSaturate";
 import ProgressSepia from "@/components/ProgressSepia";
+import { ColorPicker, useColor } from "react-color-palette";
+import "react-color-palette/css";
 
 export default function Home() {
   const [value, setValue] = useState(1);
@@ -54,7 +56,8 @@ export default function Home() {
   const [valueGrayScale, setValueGrayScale] = useState([0, 0]);
   const [valueSaturate, setValueSaturate] = useState([100, 100]);
   const [valueSepia, setValueSepia] = useState([0, 0]);
-
+  const [color, setColor] = useColor("#561ecb");
+  console.log(color.hex);
   useEffect(() => {
     const src =
       valueModel == "X"
@@ -269,7 +272,22 @@ export default function Home() {
         </div>
       </div>
       <section className="flex flex-col md:flex-row justify-center items-center py-5 md:py-10">
-        <div className="relative z-10 h-full order-2 md:order-1 mt-10 md:mt-0">
+        <div
+          style={{ backgroundColor: `${color.hex}` }}
+          className={`relative z-10 h-full order-2 md:order-1 mt-10 md:mt-0 ${
+            valueModel === "X" || valueModel === "XR"
+              ? "rounded-t-[35px] rounded-b-[35px]"
+              : valueModel === "XSMax"
+              ? "rounded-t-[30px] rounded-b-[30px]"
+              : valueModel === "13"
+              ? "rounded-t-[50px] rounded-b-[50px]"
+              : valueModel === "13pro"
+              ? "rounded-t-[46px] rounded-b-[46px]"
+              : valueModel === "13proMax"
+              ? "rounded-t-[49px] rounded-b-[49px]"
+              : "rounded-t-[40px] rounded-b-[40px]"
+          }`}
+        >
           {valueModel === "X" ? (
             <Image
               className="object-cover "
@@ -445,7 +463,7 @@ export default function Home() {
                 : valueModel === "13proMax"
                 ? "rounded-t-[49px] rounded-b-[49px]"
                 : "rounded-t-[40px] rounded-b-[40px]"
-            } overflow-hidden h-full w-full`}
+            } overflow-hidden h-full w-full `}
           >
             {showImages &&
               imageUrls.map((imageUrl, index) => (
@@ -454,6 +472,7 @@ export default function Home() {
                   src={imageUrl}
                   style={{
                     color: "transparent",
+                    top: `${index * 50}%`,
                     rotate: `${rotations[index]}deg`,
                     transform: `translate(${valueX[index]}%, ${
                       valueY[index]
@@ -465,9 +484,7 @@ export default function Home() {
                     filter: `blur(${valueBlur[index]}px) brightness(${valueBrightness[index]}%) contrast(${valueContrast[index]}%) grayscale(${valueGrayScale[index]}%) saturate(${valueSaturate[index]}%) sepia(${valueSepia[index]}%)`,
                   }}
                   alt={`Uploaded Image ${index + 1}`}
-                  className={`absolute top-[${
-                    index * 50
-                  }%] cursor-pointer object-cover w-full ${
+                  className={`absolute cursor-pointer object-cover w-full ${
                     value === 1 ? "h-full" : "h-[50%]"
                   }`}
                   width={widthImage}
@@ -589,6 +606,12 @@ export default function Home() {
                   Reset
                 </button>
               </div>
+            </div>
+            <div className="w-full">
+              <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black text-center">
+                Background Color
+              </p>
+              <ColorPicker height={60} color={color} onChange={setColor} />
             </div>
             <div className="w-full flex flex-col items-center md:items-stretch">
               <div className="flex flex-col items-center justify-center border-[1px] border-black w-full sm:w-[85%] md:w-auto ">
