@@ -78,6 +78,13 @@ export default function Home() {
     setHeightImage(src.height / 4);
   }, [valueModel]);
 
+  useEffect(() => {
+    setRotations([0, 0]);
+    setZooms([100, 100]);
+    setValueX([0, 0]);
+    setValueY([0, 0]);
+  }, [value]);
+
   const handleInputChange = (event) => {
     setSelectedImage(event.target.value);
   };
