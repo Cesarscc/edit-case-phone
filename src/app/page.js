@@ -18,6 +18,8 @@ import Iphone13mini from "/public/images/iphone13mini.png";
 import Iphone13 from "/public/images/iphone13.png";
 import Iphone13pro from "/public/images/iphone13pro.png";
 import Iphone13proMax from "/public/images/iphone13proMax.png";
+import ProgressRotation from "../components/ProgressRotation";
+import ProgressZoom from "@/components/ProgressZoom";
 
 export default function Home() {
   const [value, setValue] = useState(1);
@@ -34,6 +36,12 @@ export default function Home() {
   const handleChangeModel = (e) => {
     setValueModel(e.target.value);
   };
+
+  const [rotations, setRotations] = useState([0, 0]);
+  const [zooms, setZooms] = useState([100, 100]);
+  const [selectedImage, setSelectedImage] = useState("");
+  const [valueX, setValueX] = useState([0, 0]);
+  const [valueY, setValueY] = useState([0, 0]);
 
   useEffect(() => {
     const src =
@@ -69,6 +77,42 @@ export default function Home() {
     setWidthImage(src.width / 4);
     setHeightImage(src.height / 4);
   }, [valueModel]);
+
+  const handleInputChange = (event) => {
+    setSelectedImage(event.target.value);
+  };
+
+  const handleXRigth = (selectedImage) => {
+    if (selectedImage == 1) {
+      setValueX([valueX[0] + 1, valueX[1]]);
+    } else {
+      setValueX([valueX[0], valueX[1] + 1]);
+    }
+  };
+
+  const handleXLeft = (selectedImage) => {
+    if (selectedImage == 1) {
+      setValueX([valueX[0] - 1, valueX[1]]);
+    } else {
+      setValueX([valueX[0], valueX[1] - 1]);
+    }
+  };
+
+  const handleYUp = (selectedImage) => {
+    if (selectedImage == 1) {
+      setValueY([valueY[0] - 1, valueY[1]]);
+    } else {
+      setValueY([valueY[0], valueY[1] - 1]);
+    }
+  };
+
+  const handleYDown = (selectedImage) => {
+    if (selectedImage == 1) {
+      setValueY([valueY[0] + 1, valueY[1]]);
+    } else {
+      setValueY([valueY[0], valueY[1] + 1]);
+    }
+  };
 
   return (
     <main>
@@ -127,8 +171,8 @@ export default function Home() {
           />
         </div>
       </div>
-      <section className="flex justify-center py-20">
-        <div className="relative z-10 ">
+      <section className="flex justify-around py-20">
+        <div className="relative z-10 h-full">
           {valueModel === "X" ? (
             <Image
               className="object-cover "
@@ -292,7 +336,7 @@ export default function Home() {
           )}
 
           <div
-            className={`absolute -z-10 top-0 ${
+            className={`absolute -z-30 top-0 ${
               valueModel === "X" || valueModel === "XR"
                 ? "rounded-t-[35px] rounded-b-[35px]"
                 : valueModel === "XSMax"
@@ -313,15 +357,117 @@ export default function Home() {
                   src={imageUrl}
                   style={{
                     color: "transparent",
+                    rotate: `${rotations[index]}deg`,
+                    transform: `translate(${valueX[index]}%, ${
+                      valueY[index]
+                    }%) scale(${zooms[index] / 100})`,
+                    transition: "transform 0.1s ease",
+                    zIndex: `${
+                      (index + parseInt(selectedImage)) * (-1) ** selectedImage
+                    }`,
                   }}
                   alt={`Uploaded Image ${index + 1}`}
-                  className={`cursor-pointer object-cover w-full ${
-                    value === 1 ? "h-full" : `h-[50%]`
+                  className={`absolute top-[${
+                    index * 50
+                  }%] cursor-pointer object-cover w-full ${
+                    value === 1 ? "h-full" : "h-[50%]"
                   }`}
                   width={widthImage}
                   height={heightImage}
                 />
               ))}
+          </div>
+        </div>
+        <div className="w-[70%] pl-40">
+          <fieldset className="border-2 p-5 my-10 w-1/2">
+            <legend>Seleccione la imagen</legend>
+
+            <div>
+              <input
+                type="radio"
+                id="imagen1"
+                name="drone"
+                value="1"
+                checked={selectedImage === "1"}
+                onChange={handleInputChange}
+              />
+              <label htmlFor="imagen1"> Imagen 1</label>
+            </div>
+
+            <div>
+              <input
+                type="radio"
+                id="imagen2"
+                name="drone"
+                value="2"
+                checked={selectedImage === "2"}
+                onChange={handleInputChange}
+              />
+              <label htmlFor="imagen2"> Imagen 2</label>
+            </div>
+            <p>Imagen seleccionada: {selectedImage}</p>
+          </fieldset>
+          <div className="grid grid-cols-2 gap-10">
+            <div className="flex flex-col items-center justify-center border-2 border-black pb-10">
+              <p className="font-semibold text-2xl tracking-wider text-black">
+                Rotation
+              </p>
+              <ProgressRotation
+                selectedImage={selectedImage}
+                rotations={rotations}
+                setRotations={setRotations}
+              />
+            </div>
+            <div className="flex flex-col items-center justify-center border-2  border-black pb-10">
+              <p className="font-semibold text-2xl tracking-wider text-black">
+                Zoom
+              </p>
+              <ProgressZoom
+                selectedImage={selectedImage}
+                zooms={zooms}
+                setZooms={setZooms}
+              />
+            </div>
+            <div className="flex flex-col items-center justify-center border-2  border-black pb-10">
+              <p className="font-semibold text-2xl tracking-wider text-black">
+                Move
+              </p>
+              <div className="flex justify-center gap-5 w-full pt-5">
+                <button
+                  className="w-10 h-10 bg-slate-400 rounded-full text-white text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  onClick={() => handleYUp(selectedImage)}
+                >
+                  ↑
+                </button>
+                <button
+                  className="w-10 h-10 bg-slate-400 rounded-full text-white text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  onClick={() => handleYDown(selectedImage)}
+                >
+                  ↓
+                </button>
+                <button
+                  className="w-10 h-10 bg-slate-400 rounded-full text-white text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  onClick={() => handleXRigth(selectedImage)}
+                >
+                  →
+                </button>
+                <button
+                  className="w-10 h-10 bg-slate-400 rounded-full text-white text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  onClick={() => handleXLeft(selectedImage)}
+                >
+                  ←
+                </button>
+                <button
+                  className="w-24 h-10 bg-slate-400 rounded-xl text-white text-2xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms] font-semibold"
+                  onClick={() => {
+                    setValueX([0, 0]);
+                    setValueY([0, 0]);
+                  }}
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
