@@ -114,6 +114,24 @@ export default function Home() {
     }
   };
 
+  const handleResetZoom = () => {
+    if (selectedImage == 1) {
+      setZooms([100, zooms[1]]);
+    }
+    if (selectedImage == 2) {
+      setZooms([zooms[0], 100]);
+    }
+  };
+
+  const handleResetRotation = () => {
+    if (selectedImage == 1) {
+      setRotations([0, rotations[1]]);
+    }
+    if (selectedImage == 2) {
+      setRotations([rotations[0], 0]);
+    }
+  };
+
   return (
     <main>
       <div className="grid grid-cols-1 lg:grid-cols-3 items-center justify-items-center bg-[#fefec7]">
@@ -420,9 +438,17 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-2 place-items-center md:place-items-stretch gap-2 sm:gap-4 lg:gap-10 mx-1 sm:mx-2">
             <div className="flex flex-col items-center justify-center border-2 border-black pb-5 sm:pb-10 w-full sm:w-[85%] md:w-auto">
-              <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
-                Rotation
-              </p>
+              <div className="flex justify-evenly w-full">
+                <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
+                  Rotation
+                </p>
+                <p
+                  className="text-xl cursor-pointer"
+                  onClick={handleResetRotation}
+                >
+                  ↺
+                </p>
+              </div>
               <ProgressRotation
                 selectedImage={selectedImage}
                 rotations={rotations}
@@ -430,9 +456,14 @@ export default function Home() {
               />
             </div>
             <div className="flex flex-col items-center justify-center border-2 border-black pb-5 sm:pb-10 w-full sm:w-[85%] md:w-auto ">
-              <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
-                Zoom
-              </p>
+              <div className="flex justify-evenly w-full">
+                <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
+                  Zoom
+                </p>
+                <p className="text-xl cursor-pointer" onClick={handleResetZoom}>
+                  ↺
+                </p>
+              </div>
               <ProgressZoom
                 selectedImage={selectedImage}
                 zooms={zooms}
