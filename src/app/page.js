@@ -17,6 +17,7 @@ import Iphone12proMax from "/public/images/iphone12proMax.png";
 import Iphone13mini from "/public/images/iphone13mini.png";
 import Iphone13 from "/public/images/iphone13.png";
 import Iphone13pro from "/public/images/iphone13pro.png";
+import Iphone13proMax from "/public/images/iphone13proMax.png";
 
 export default function Home() {
   const [value, setValue] = useState(1);
@@ -62,6 +63,8 @@ export default function Home() {
         ? Iphone13mini
         : valueModel == "13pro"
         ? Iphone13pro
+        : valueModel == "13proMax"
+        ? Iphone13proMax
         : IphoneXS;
     setWidthImage(src.width / 4);
     setHeightImage(src.height / 4);
@@ -111,6 +114,7 @@ export default function Home() {
             <option value={"13mini"}>iPhone 13 mini</option>
             <option value={"13"}>iPhone 13</option>
             <option value={"13pro"}>iPhone 13 pro</option>
+            <option value={"13proMax"}>iPhone 13 pro Max</option>
           </select>
         </div>
         <div className="w-full">
@@ -124,10 +128,10 @@ export default function Home() {
         </div>
       </div>
       <section className="flex justify-center py-20">
-        <div className="relative z-10">
+        <div className="relative z-10 ">
           {valueModel === "X" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={IphoneX}
               alt="iPhone X"
@@ -137,7 +141,7 @@ export default function Home() {
             />
           ) : valueModel === "XR" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={IphoneXR}
               alt="iPhone XR"
@@ -147,7 +151,7 @@ export default function Home() {
             />
           ) : valueModel === "XSMax" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={IphoneXSMax}
               alt="iPhone XS MAX"
@@ -157,7 +161,7 @@ export default function Home() {
             />
           ) : valueModel === "11" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={Iphone11}
               alt="iPhone 11"
@@ -167,7 +171,7 @@ export default function Home() {
             />
           ) : valueModel === "11pro" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={Iphone11pro}
               alt="iPhone 11 pro"
@@ -177,7 +181,7 @@ export default function Home() {
             />
           ) : valueModel === "11proMax" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={Iphone11proMax}
               alt="iPhone 11 pro Max"
@@ -187,7 +191,7 @@ export default function Home() {
             />
           ) : valueModel === "SE2da" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={IphoneSEda}
               alt="iPhone SE (2da generación)"
@@ -197,7 +201,7 @@ export default function Home() {
             />
           ) : valueModel === "12mini" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={Iphone12mini}
               alt="iPhone 12 mini"
@@ -207,7 +211,7 @@ export default function Home() {
             />
           ) : valueModel === "12" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={Iphone12}
               alt="iPhone 12"
@@ -217,7 +221,7 @@ export default function Home() {
             />
           ) : valueModel === "12pro" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={Iphone12pro}
               alt="iPhone 12 pro"
@@ -227,7 +231,7 @@ export default function Home() {
             />
           ) : valueModel === "12proMax" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={Iphone12proMax}
               alt="iPhone 12 pro Max"
@@ -237,7 +241,7 @@ export default function Home() {
             />
           ) : valueModel === "13mini" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={Iphone13mini}
               alt="iPhone 13 mini"
@@ -247,7 +251,7 @@ export default function Home() {
             />
           ) : valueModel === "13" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={Iphone13}
               alt="iPhone 13"
@@ -257,7 +261,7 @@ export default function Home() {
             />
           ) : valueModel === "13pro" ? (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={Iphone13pro}
               alt="iPhone 13 pro"
@@ -265,9 +269,19 @@ export default function Home() {
               height={Iphone13pro.height}
               quality={100}
             />
+          ) : valueModel === "13proMax" ? (
+            <Image
+              className="object-cover "
+              priority
+              src={Iphone13proMax}
+              alt="iPhone 13 pro Max"
+              width={Iphone13proMax.width / 1.3}
+              height={Iphone13proMax.height / 1.3}
+              quality={100}
+            />
           ) : (
             <Image
-              className="object-cover"
+              className="object-cover "
               priority
               src={IphoneXS}
               alt="iPhone XS"
@@ -287,6 +301,8 @@ export default function Home() {
                 ? "rounded-t-[50px] rounded-b-[50px]"
                 : valueModel === "13pro"
                 ? "rounded-t-[46px] rounded-b-[46px]"
+                : valueModel === "13proMax"
+                ? "rounded-t-[49px] rounded-b-[49px]"
                 : "rounded-t-[40px] rounded-b-[40px]"
             } overflow-hidden h-full w-full`}
           >
@@ -295,9 +311,11 @@ export default function Home() {
                 <Image
                   key={index}
                   src={imageUrl}
-                  style={{ color: "transparent" }}
+                  style={{
+                    color: "transparent",
+                  }}
                   alt={`Uploaded Image ${index + 1}`}
-                  className={`object-cover w-full ${
+                  className={`cursor-pointer object-cover w-full ${
                     value === 1 ? "h-full" : `h-[50%]`
                   }`}
                   width={widthImage}
