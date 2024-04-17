@@ -15,10 +15,10 @@ const ProgressRotation = ({ selectedImage, rotations, setRotations }) => {
 
   return (
     <div
-      style={{ display: "flex", justifyContent: "center", marginTop: "15px" }}
+      style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}
     >
       <div
-        className="w-[250px] sm:w-[350px] md:w-[150px] lg:w-[200px] xl:w-[300px] 2xl:w-[350px]"
+        className="w-[150px] sm:w-[210px] md:w-[150px] lg:w-[200px] xl:w-[300px] 2xl:w-[350px]"
         style={{ position: "relative" }}
       >
         <Range
@@ -57,7 +57,7 @@ const ProgressRotation = ({ selectedImage, rotations, setRotations }) => {
         />
         <output
           style={{ marginTop: "20px", textAlign: "center" }}
-          className="md:text-xs lg:text-sm xl:text-base"
+          className="text-[10px] md:text-xs lg:text-sm xl:text-base"
         >
           {values[0]}
         </output>
@@ -74,7 +74,7 @@ const ProgressRotation = ({ selectedImage, rotations, setRotations }) => {
               left: "0",
               transform: "translateX(-50%)",
             }}
-            className="md:text-xs lg:text-sm xl:text-base"
+            className="text-[10px] md:text-xs lg:text-sm xl:text-base"
           >
             -180
           </div>
@@ -84,7 +84,7 @@ const ProgressRotation = ({ selectedImage, rotations, setRotations }) => {
               left: "25%",
               transform: "translateX(-50%)",
             }}
-            className="md:text-xs lg:text-sm xl:text-base"
+            className="text-[10px] md:text-xs lg:text-sm xl:text-base"
           >
             -90
           </div>
@@ -94,7 +94,7 @@ const ProgressRotation = ({ selectedImage, rotations, setRotations }) => {
               left: "50%",
               transform: "translateX(-50%)",
             }}
-            className="md:text-xs lg:text-sm xl:text-base"
+            className="text-[10px] md:text-xs lg:text-sm xl:text-base"
           >
             0
           </div>
@@ -104,7 +104,7 @@ const ProgressRotation = ({ selectedImage, rotations, setRotations }) => {
               left: "75%",
               transform: "translateX(-50%)",
             }}
-            className="md:text-xs lg:text-sm xl:text-base"
+            className="text-[10px] md:text-xs lg:text-sm xl:text-base"
           >
             +90
           </div>
@@ -114,7 +114,7 @@ const ProgressRotation = ({ selectedImage, rotations, setRotations }) => {
               right: "0",
               transform: "translateX(50%)",
             }}
-            className="md:text-xs lg:text-sm xl:text-base"
+            className="text-[10px] md:text-xs lg:text-sm xl:text-base"
           >
             +180
           </div>

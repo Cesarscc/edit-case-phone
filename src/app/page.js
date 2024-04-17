@@ -418,9 +418,9 @@ export default function Home() {
               </p>
             </fieldset>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 place-items-center md:place-items-stretch md:gap-4 lg:gap-10 space-y-3 mx-2">
-            <div className="flex flex-col items-center justify-center border-2 border-black pb-10 w-full sm:w-3/4 md:w-auto">
-              <p className="font-semibold text-2xl tracking-wider text-black">
+          <div className="grid grid-cols-2 md:grid-cols-2 place-items-center md:place-items-stretch gap-2 sm:gap-4 lg:gap-10 mx-1 sm:mx-2">
+            <div className="flex flex-col items-center justify-center border-2 border-black pb-5 sm:pb-10 w-full sm:w-[85%] md:w-auto">
+              <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
                 Rotation
               </p>
               <ProgressRotation
@@ -429,8 +429,8 @@ export default function Home() {
                 setRotations={setRotations}
               />
             </div>
-            <div className="flex flex-col items-center justify-center border-2 border-black pb-10 w-full sm:w-3/4 md:w-auto ">
-              <p className="font-semibold text-2xl tracking-wider text-black">
+            <div className="flex flex-col items-center justify-center border-2 border-black pb-5 sm:pb-10 w-full sm:w-[85%] md:w-auto ">
+              <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
                 Zoom
               </p>
               <ProgressZoom
@@ -439,37 +439,37 @@ export default function Home() {
                 setZooms={setZooms}
               />
             </div>
-            <div className="flex flex-col items-center justify-center border-2 border-black pb-5 w-full sm:w-3/4 md:w-auto">
-              <p className="font-semibold text-2xl tracking-wider text-black">
+            <div className="flex flex-col items-center justify-center border-2 border-black pb-5 w-full sm:w-[85%] md:w-auto">
+              <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
                 Move
               </p>
-              <div className="flex justify-center gap-3 lg:gap-5 w-full pt-5">
+              <div className="flex justify-center gap-3 lg:gap-5 w-full pt-1 md:pt-5">
                 <button
-                  className="w-7 xl:w-8 2xl:w-10 h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white text-lg lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  className="flex justify-center items-center w-5 xl:w-8 2xl:w-10 h-5 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white text-lg lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
                   onClick={() => handleYUp(selectedImage)}
                 >
                   ↑
                 </button>
                 <button
-                  className="w-7 xl:w-8 2xl:w-10 h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white text-lg lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  className="flex justify-center items-center w-5 xl:w-8 2xl:w-10 h-5 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white text-lg lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
                   onClick={() => handleYDown(selectedImage)}
                 >
                   ↓
                 </button>
                 <button
-                  className="flex justify-center items-center w-7 xl:w-8 2xl:w-10 h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white text-lg lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  className="flex justify-center items-center w-5 xl:w-8 2xl:w-10 h-5 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white text-lg lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
                   onClick={() => handleXRigth(selectedImage)}
                 >
                   →
                 </button>
                 <button
-                  className="flex justify-center items-center w-7 xl:w-8 2xl:w-10 h-7 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white text-lg lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
+                  className="flex justify-center items-center w-5 xl:w-8 2xl:w-10 h-5 xl:h-8 2xl:h-10 bg-slate-400 rounded-full text-white text-lg lg:text-2xl 2xl:text-3xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms]"
                   onClick={() => handleXLeft(selectedImage)}
                 >
                   ←
                 </button>
                 <button
-                  className="w-14 h-7 lg:w-16 xl:w-20 xl:h-8 2xl:w-24 2xl:h-10 bg-slate-400 rounded-xl text-white text-sm lg:text-base xl:text-lg 2xl:text-2xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms] font-semibold"
+                  className="w-14 h-5 sm:w-14 sm:h-7 lg:w-16 xl:w-20 xl:h-8 2xl:w-24 2xl:h-10 bg-slate-400 rounded-xl text-white text-sm lg:text-base xl:text-lg 2xl:text-2xl hover:bg-slate-300 hover:text-black hover:transition-all hover:delay-[90ms] font-semibold"
                   onClick={() => {
                     setValueX([0, 0]);
                     setValueY([0, 0]);
