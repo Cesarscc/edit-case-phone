@@ -235,7 +235,7 @@ export default function Home() {
           </h2>
           <select
             onChange={handleChangeModel}
-            className="appearance-none text-center bg-[#f5bb0b] text-white font-semibold select select-warning w-1/3 sm:w-full max-w-xs ml-3 sm:ml-0"
+            className="appearance-none text-center bg-[#f5bb0b] text-white font-semibold select select-warning w-1/3 sm:w-full max-w-xs ml-3 sm:ml-0 text-xs md:text-base"
           >
             <option value={""} defaultValue disabled>
               Seleccionar Modelo
@@ -268,7 +268,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <section className="flex flex-col md:flex-row justify-center items-center py-5 md:py-20">
+      <section className="flex flex-col md:flex-row justify-center items-center py-5 md:py-10">
         <div className="relative z-10 h-full order-2 md:order-1 mt-10 md:mt-0">
           {valueModel === "X" ? (
             <Image
