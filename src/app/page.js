@@ -22,6 +22,10 @@ import ProgressRotation from "../components/ProgressRotation";
 import ProgressZoom from "@/components/ProgressZoom";
 import ProgressBlur from "@/components/ProgressBlur";
 import ProgressBrightness from "@/components/ProgressBrightness";
+import ProgressContrast from "@/components/ProgressContrast";
+import ProgressGrayScale from "@/components/ProgressGrayScale";
+import ProgressSaturate from "@/components/ProgressSaturate";
+import ProgressSepia from "@/components/ProgressSepia";
 
 export default function Home() {
   const [value, setValue] = useState(1);
@@ -46,6 +50,10 @@ export default function Home() {
   const [valueY, setValueY] = useState([0, 0]);
   const [valueBlur, setValueBlur] = useState([0, 0]);
   const [valueBrightness, setValueBrightness] = useState([100, 100]);
+  const [valueContrast, setValueContrast] = useState([100, 100]);
+  const [valueGrayScale, setValueGrayScale] = useState([0, 0]);
+  const [valueSaturate, setValueSaturate] = useState([100, 100]);
+  const [valueSepia, setValueSepia] = useState([0, 0]);
 
   useEffect(() => {
     const src =
@@ -87,6 +95,12 @@ export default function Home() {
     setZooms([100, 100]);
     setValueX([0, 0]);
     setValueY([0, 0]);
+    setValueBlur([0, 0]);
+    setValueBrightness([100, 100]);
+    setValueContrast([100, 100]);
+    setValueGrayScale([0, 0]);
+    setValueSaturate([100, 100]);
+    setValueSepia([0, 0]);
   }, [value]);
 
   const handleInputChange = (event) => {
@@ -154,10 +168,46 @@ export default function Home() {
 
   const handleResetBrightness = () => {
     if (selectedImage == 1) {
-      setValueBrightness([0, valueBrightness[1]]);
+      setValueBrightness([100, valueBrightness[1]]);
     }
     if (selectedImage == 2) {
-      setValueBrightness([valueBrightness[0], 0]);
+      setValueBrightness([valueBrightness[0], 100]);
+    }
+  };
+
+  const handleResetContrast = () => {
+    if (selectedImage == 1) {
+      setValueContrast([100, valueContrast[1]]);
+    }
+    if (selectedImage == 2) {
+      setValueContrast([valueContrast[0], 100]);
+    }
+  };
+
+  const handleResetGrayScale = () => {
+    if (selectedImage == 1) {
+      setValueGrayScale([0, valueGrayScale[1]]);
+    }
+    if (selectedImage == 2) {
+      setValueGrayScale([valueGrayScale[0], 0]);
+    }
+  };
+
+  const handleResetSaturate = () => {
+    if (selectedImage == 1) {
+      setValueSaturate([100, valueSaturate[1]]);
+    }
+    if (selectedImage == 2) {
+      setValueSaturate([valueSaturate[0], 100]);
+    }
+  };
+
+  const handleResetSepia = () => {
+    if (selectedImage == 1) {
+      setValueSepia([0, valueSepia[1]]);
+    }
+    if (selectedImage == 2) {
+      setValueSepia([valueSepia[0], 0]);
     }
   };
 
@@ -412,7 +462,7 @@ export default function Home() {
                     zIndex: `${
                       (index + parseInt(selectedImage)) * (-1) ** selectedImage
                     }`,
-                    filter: `blur(${valueBlur[index]}px) brightness(${valueBrightness[index]}%)`,
+                    filter: `blur(${valueBlur[index]}px) brightness(${valueBrightness[index]}%) contrast(${valueContrast[index]}%) grayscale(${valueGrayScale[index]}%) saturate(${valueSaturate[index]}%) sepia(${valueSepia[index]}%)`,
                   }}
                   alt={`Uploaded Image ${index + 1}`}
                   className={`absolute top-[${
@@ -467,7 +517,7 @@ export default function Home() {
             </fieldset>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-2 place-items-center md:place-items-stretch gap-2 sm:gap-4 lg:gap-10 mx-1 sm:mx-2">
-            <div className="flex flex-col items-center justify-center border-2 border-black pb-5 sm:pb-10 w-full sm:w-[85%] md:w-auto">
+            <div className="flex flex-col items-center justify-center border-[1px] border-black pb-5 sm:pb-10 w-full sm:w-[85%] md:w-auto">
               <div className="flex justify-evenly w-full">
                 <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
                   Rotation
@@ -485,7 +535,7 @@ export default function Home() {
                 setRotations={setRotations}
               />
             </div>
-            <div className="flex flex-col items-center justify-center border-2 border-black pb-5 sm:pb-10 w-full sm:w-[85%] md:w-auto ">
+            <div className="flex flex-col items-center justify-center border-[1px] border-black pb-5 sm:pb-10 w-full sm:w-[85%] md:w-auto ">
               <div className="flex justify-evenly w-full">
                 <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
                   Zoom
@@ -500,7 +550,7 @@ export default function Home() {
                 setZooms={setZooms}
               />
             </div>
-            <div className="flex flex-col items-center justify-center border-2 border-black pb-5 w-full sm:w-[85%] md:w-auto">
+            <div className="flex flex-col items-center justify-center border-[1px] border-black pb-5 w-full sm:w-[85%] md:w-auto h-fit">
               <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
                 Move
               </p>
@@ -540,8 +590,8 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            <div>
-              <div className="flex flex-col items-center justify-center border-2 border-black w-full sm:w-[85%] md:w-auto ">
+            <div className="w-full flex flex-col items-center md:items-stretch">
+              <div className="flex flex-col items-center justify-center border-[1px] border-black w-full sm:w-[85%] md:w-auto ">
                 <div className="flex justify-evenly w-full">
                   <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
                     Blur
@@ -559,7 +609,7 @@ export default function Home() {
                   setValueBlur={setValueBlur}
                 />
               </div>
-              <div className="flex flex-col items-center justify-center border-2 border-black w-full sm:w-[85%] md:w-auto ">
+              <div className="flex flex-col items-center justify-center border-[1px] border-black w-full sm:w-[85%] md:w-auto ">
                 <div className="flex justify-evenly w-full">
                   <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
                     Brightness
@@ -575,6 +625,82 @@ export default function Home() {
                   selectedImage={selectedImage}
                   valueBrightness={valueBrightness}
                   setValueBrightness={setValueBrightness}
+                />
+              </div>
+            </div>
+            <div className="w-full flex flex-col items-center md:items-stretch">
+              <div className="flex flex-col items-center justify-center border-[1px] border-black w-full sm:w-[85%] md:w-auto ">
+                <div className="flex justify-evenly w-full">
+                  <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
+                    Contrast
+                  </p>
+                  <p
+                    className="text-xl cursor-pointer"
+                    onClick={handleResetContrast}
+                  >
+                    ↺
+                  </p>
+                </div>
+                <ProgressContrast
+                  selectedImage={selectedImage}
+                  valueContrast={valueContrast}
+                  setValueContrast={setValueContrast}
+                />
+              </div>
+              <div className="flex flex-col items-center justify-center border-[1px] border-black w-full sm:w-[85%] md:w-auto ">
+                <div className="flex justify-evenly w-full">
+                  <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
+                    Gray Scale
+                  </p>
+                  <p
+                    className="text-xl cursor-pointer"
+                    onClick={handleResetGrayScale}
+                  >
+                    ↺
+                  </p>
+                </div>
+                <ProgressGrayScale
+                  selectedImage={selectedImage}
+                  valueGrayScale={valueGrayScale}
+                  setValueGrayScale={setValueGrayScale}
+                />
+              </div>
+            </div>
+            <div className="w-full flex flex-col items-center md:items-stretch">
+              <div className="flex flex-col items-center justify-center border-[1px] border-black w-full sm:w-[85%] md:w-auto ">
+                <div className="flex justify-evenly w-full">
+                  <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
+                    Saturate
+                  </p>
+                  <p
+                    className="text-xl cursor-pointer"
+                    onClick={handleResetSaturate}
+                  >
+                    ↺
+                  </p>
+                </div>
+                <ProgressSaturate
+                  selectedImage={selectedImage}
+                  valueSaturate={valueSaturate}
+                  setValueSaturate={setValueSaturate}
+                />
+              </div>
+              <div className="flex flex-col items-center justify-center border-[1px] border-black w-full sm:w-[85%] md:w-auto ">
+                <div className="flex justify-evenly w-full">
+                  <p className="font-semibold text-lg sm:text-2xl tracking-wider text-black">
+                    Sepia
+                  </p>
+                  <p
+                    className="text-xl cursor-pointer"
+                    onClick={handleResetSepia}
+                  >
+                    ↺
+                  </p>
+                </div>
+                <ProgressSepia
+                  selectedImage={selectedImage}
+                  valueSepia={valueSepia}
+                  setValueSepia={setValueSepia}
                 />
               </div>
             </div>
