@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from "react";
+"use client";
+import { useEffect } from "react";
 import { Range } from "react-range";
 
-const ProgressRotation = ({ selectedImage, rotations, setRotations }) => {
-  const [values, setValues] = useState([0]);
-
+const ProgressRotation = ({ resetValue, currentRotation, updateRotation }) => {
   useEffect(() => {
-    if (selectedImage == 1) {
-      setRotations([...values, rotations[1]]);
-    }
-    if (selectedImage == 2) {
-      setRotations([rotations[0], ...values]);
-    }
-  }, [values]);
+    updateRotation([0]);
+  }, [resetValue]);
 
   return (
     <div
@@ -25,8 +19,8 @@ const ProgressRotation = ({ selectedImage, rotations, setRotations }) => {
           step={1}
           min={-180}
           max={180}
-          values={values}
-          onChange={(newValues) => setValues(newValues)}
+          values={currentRotation}
+          onChange={(newValues) => updateRotation(newValues)}
           renderTrack={({ props, children }) => (
             <div
               {...props}
@@ -59,7 +53,7 @@ const ProgressRotation = ({ selectedImage, rotations, setRotations }) => {
           style={{ marginTop: "20px", textAlign: "center" }}
           className="text-[10px] md:text-xs lg:text-sm xl:text-base"
         >
-          {values[0]}
+          {currentRotation}
         </output>
         <div
           style={{

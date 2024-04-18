@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Range } from "react-range";
 
-const ProgressSepia = ({ selectedImage, valueSepia, setValueSepia }) => {
-  const [values, setValues] = useState([0]);
-
+const ProgressSepia = ({ resetValue, currentSepia, updateSepia }) => {
   useEffect(() => {
-    if (selectedImage == 1) {
-      setValueSepia([...values, valueSepia[1]]);
-    }
-    if (selectedImage == 2) {
-      setValueSepia([valueSepia[0], ...values]);
-    }
-  }, [values]);
+    updateSepia([0]);
+  }, [resetValue]);
 
   return (
     <div
@@ -25,8 +18,8 @@ const ProgressSepia = ({ selectedImage, valueSepia, setValueSepia }) => {
           step={1}
           min={0}
           max={100}
-          values={values}
-          onChange={(newValues) => setValues(newValues)}
+          values={currentSepia}
+          onChange={(newValues) => updateSepia(newValues)}
           renderTrack={({ props, children }) => (
             <div
               {...props}
@@ -59,7 +52,7 @@ const ProgressSepia = ({ selectedImage, valueSepia, setValueSepia }) => {
           style={{ marginTop: "20px", textAlign: "center" }}
           className="text-[10px] md:text-xs lg:text-sm xl:text-base"
         >
-          {values[0]}
+          {currentSepia}
         </output>
       </div>
     </div>

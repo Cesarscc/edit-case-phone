@@ -1,21 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Range } from "react-range";
 
-const ProgressSaturate = ({
-  selectedImage,
-  valueSaturate,
-  setValueSaturate,
-}) => {
-  const [values, setValues] = useState([100]);
-
+const ProgressSaturate = ({ resetValue, currentSaturate, updateSaturate }) => {
   useEffect(() => {
-    if (selectedImage == 1) {
-      setValueSaturate([...values, valueSaturate[1]]);
-    }
-    if (selectedImage == 2) {
-      setValueSaturate([valueSaturate[0], ...values]);
-    }
-  }, [values]);
+    updateSaturate([100]);
+  }, [resetValue]);
 
   return (
     <div
@@ -29,8 +18,8 @@ const ProgressSaturate = ({
           step={1}
           min={0}
           max={200}
-          values={values}
-          onChange={(newValues) => setValues(newValues)}
+          values={currentSaturate}
+          onChange={(newValues) => updateSaturate(newValues)}
           renderTrack={({ props, children }) => (
             <div
               {...props}
@@ -63,7 +52,7 @@ const ProgressSaturate = ({
           style={{ marginTop: "20px", textAlign: "center" }}
           className="text-[10px] md:text-xs lg:text-sm xl:text-base"
         >
-          {values[0]}
+          {currentSaturate}
         </output>
       </div>
     </div>

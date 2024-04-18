@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Range } from "react-range";
 
 const ProgressBrightness = ({
-  selectedImage,
-  valueBrightness,
-  setValueBrightness,
+  resetValue,
+  currentBrightness,
+  updateBrightness,
 }) => {
-  const [values, setValues] = useState([100]);
-
   useEffect(() => {
-    if (selectedImage == 1) {
-      setValueBrightness([...values, valueBrightness[1]]);
-    }
-    if (selectedImage == 2) {
-      setValueBrightness([valueBrightness[0], ...values]);
-    }
-  }, [values]);
+    updateBrightness([100]);
+  }, [resetValue]);
 
   return (
     <div
@@ -29,8 +22,8 @@ const ProgressBrightness = ({
           step={1}
           min={0}
           max={200}
-          values={values}
-          onChange={(newValues) => setValues(newValues)}
+          values={currentBrightness}
+          onChange={(newValues) => updateBrightness(newValues)}
           renderTrack={({ props, children }) => (
             <div
               {...props}
@@ -63,7 +56,7 @@ const ProgressBrightness = ({
           style={{ marginTop: "20px", textAlign: "center" }}
           className="text-[10px] md:text-xs lg:text-sm xl:text-base"
         >
-          {values[0]}
+          {currentBrightness}
         </output>
       </div>
     </div>

@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Range } from "react-range";
 
-const ProgressZoom = ({ selectedImage, zooms, setZooms }) => {
-  const [values, setValues] = useState([100]);
-
+const ProgressZoom = ({ resetValue, currentZoom, updateZoom }) => {
   useEffect(() => {
-    if (selectedImage == 1) {
-      setZooms([...values, zooms[1]]);
-    }
-    if (selectedImage == 2) {
-      setZooms([zooms[0], ...values]);
-    }
-  }, [values]);
+    updateZoom([100]);
+  }, [resetValue]);
 
   return (
     <div
@@ -25,8 +18,8 @@ const ProgressZoom = ({ selectedImage, zooms, setZooms }) => {
           step={1}
           min={0}
           max={200}
-          values={values}
-          onChange={(newValues) => setValues(newValues)}
+          values={currentZoom}
+          onChange={(newValues) => updateZoom(newValues)}
           renderTrack={({ props, children }) => (
             <div
               {...props}
@@ -59,7 +52,7 @@ const ProgressZoom = ({ selectedImage, zooms, setZooms }) => {
           style={{ marginTop: "20px", textAlign: "center" }}
           className="text-[10px] md:text-xs lg:text-sm xl:text-base"
         >
-          {values[0]}
+          {currentZoom}
         </output>
         <div
           style={{

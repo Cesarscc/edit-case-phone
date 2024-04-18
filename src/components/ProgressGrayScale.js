@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Range } from "react-range";
 
 const ProgressGrayScale = ({
-  selectedImage,
-  valueGrayScale,
-  setValueGrayScale,
+  resetValue,
+  currentGrayScale,
+  updateGrayScale,
 }) => {
-  const [values, setValues] = useState([0]);
-
   useEffect(() => {
-    if (selectedImage == 1) {
-      setValueGrayScale([...values, valueGrayScale[1]]);
-    }
-    if (selectedImage == 2) {
-      setValueGrayScale([valueGrayScale[0], ...values]);
-    }
-  }, [values]);
+    updateGrayScale([0]);
+  }, [resetValue]);
 
   return (
     <div
@@ -29,8 +22,8 @@ const ProgressGrayScale = ({
           step={1}
           min={0}
           max={200}
-          values={values}
-          onChange={(newValues) => setValues(newValues)}
+          values={currentGrayScale}
+          onChange={(newValues) => updateGrayScale(newValues)}
           renderTrack={({ props, children }) => (
             <div
               {...props}
@@ -63,7 +56,7 @@ const ProgressGrayScale = ({
           style={{ marginTop: "20px", textAlign: "center" }}
           className="text-[10px] md:text-xs lg:text-sm xl:text-base"
         >
-          {values[0]}
+          {currentGrayScale}
         </output>
       </div>
     </div>

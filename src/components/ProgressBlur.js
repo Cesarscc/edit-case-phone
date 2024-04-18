@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Range } from "react-range";
 
-const ProgressBlur = ({ selectedImage, valueBlur, setValueBlur }) => {
-  const [values, setValues] = useState([0]);
-
+const ProgressBlur = ({ resetValue, currentBlur, updateBlur }) => {
   useEffect(() => {
-    if (selectedImage == 1) {
-      setValueBlur([...values, valueBlur[1]]);
-    }
-    if (selectedImage == 2) {
-      setValueBlur([valueBlur[0], ...values]);
-    }
-  }, [values]);
+    updateBlur([0]);
+  }, [resetValue]);
 
   return (
     <div
@@ -25,8 +18,8 @@ const ProgressBlur = ({ selectedImage, valueBlur, setValueBlur }) => {
           step={1}
           min={0}
           max={100}
-          values={values}
-          onChange={(newValues) => setValues(newValues)}
+          values={currentBlur}
+          onChange={(newValues) => updateBlur(newValues)}
           renderTrack={({ props, children }) => (
             <div
               {...props}
@@ -59,7 +52,7 @@ const ProgressBlur = ({ selectedImage, valueBlur, setValueBlur }) => {
           style={{ marginTop: "20px", textAlign: "center" }}
           className="text-[10px] md:text-xs lg:text-sm xl:text-base"
         >
-          {values[0]}
+          {currentBlur}
         </output>
       </div>
     </div>

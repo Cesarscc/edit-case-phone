@@ -1,21 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Range } from "react-range";
 
-const ProgressContrast = ({
-  selectedImage,
-  valueContrast,
-  setValueContrast,
-}) => {
-  const [values, setValues] = useState([100]);
-
+const ProgressContrast = ({ resetValue, currentContrast, updateContrast }) => {
   useEffect(() => {
-    if (selectedImage == 1) {
-      setValueContrast([...values, valueContrast[1]]);
-    }
-    if (selectedImage == 2) {
-      setValueContrast([valueContrast[0], ...values]);
-    }
-  }, [values]);
+    updateContrast([100]);
+  }, [resetValue]);
 
   return (
     <div
@@ -29,8 +18,8 @@ const ProgressContrast = ({
           step={1}
           min={0}
           max={200}
-          values={values}
-          onChange={(newValues) => setValues(newValues)}
+          values={currentContrast}
+          onChange={(newValues) => updateContrast(newValues)}
           renderTrack={({ props, children }) => (
             <div
               {...props}
@@ -63,7 +52,7 @@ const ProgressContrast = ({
           style={{ marginTop: "20px", textAlign: "center" }}
           className="text-[10px] md:text-xs lg:text-sm xl:text-base"
         >
-          {values[0]}
+          {currentContrast}
         </output>
       </div>
     </div>

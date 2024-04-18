@@ -29,6 +29,8 @@ import ProgressSepia from "@/components/ProgressSepia";
 import { ColorPicker, useColor } from "react-color-palette";
 import "react-color-palette/css";
 
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+
 export default function Home() {
   const [value, setValue] = useState(1);
   const [valueModel, setValueModel] = useState("X");
@@ -44,20 +46,109 @@ export default function Home() {
   const handleChangeModel = (e) => {
     setValueModel(e.target.value);
   };
+  const currentRotation1 = useAppSelector((state) => state.currentRotation1);
+  const currentRotation2 = useAppSelector((state) => state.currentRotation2);
+  const currentZoom1 = useAppSelector((state) => state.currentZoom1);
+  const currentZoom2 = useAppSelector((state) => state.currentZoom2);
+  const currentBlur1 = useAppSelector((state) => state.currentBlur1);
+  const currentBlur2 = useAppSelector((state) => state.currentBlur2);
+  const currentBrightness1 = useAppSelector(
+    (state) => state.currentBrightness1
+  );
+  const currentBrightness2 = useAppSelector(
+    (state) => state.currentBrightness2
+  );
+  const currentContrast1 = useAppSelector((state) => state.currentContrast1);
 
-  const [rotations, setRotations] = useState([0, 0]);
-  const [zooms, setZooms] = useState([100, 100]);
-  const [selectedImage, setSelectedImage] = useState("");
+  const currentContrast2 = useAppSelector((state) => state.currentContrast2);
+
+  const currentGrayScale1 = useAppSelector((state) => state.currentGrayScale1);
+
+  const currentGrayScale2 = useAppSelector((state) => state.currentGrayScale2);
+
+  const currentSaturate1 = useAppSelector((state) => state.currentSaturate1);
+
+  const currentSaturate2 = useAppSelector((state) => state.currentSaturate2);
+
+  const currentSepia1 = useAppSelector((state) => state.currentSepia1);
+
+  const currentSepia2 = useAppSelector((state) => state.currentSepia2);
+
+  const dispatch = useAppDispatch();
+
+  const updateRotation1 = (newValue) => {
+    dispatch({ type: "UPDATE_ROTATION_1", payload: newValue });
+  };
+
+  const updateRotation2 = (newValue) => {
+    dispatch({ type: "UPDATE_ROTATION_2", payload: newValue });
+  };
+
+  const updateZoom1 = (newValue) => {
+    dispatch({ type: "UPDATE_ZOOM_1", payload: newValue });
+  };
+
+  const updateZoom2 = (newValue) => {
+    dispatch({ type: "UPDATE_ZOOM_2", payload: newValue });
+  };
+
+  const updateBlur1 = (newValue) => {
+    dispatch({ type: "UPDATE_BLUR_1", payload: newValue });
+  };
+
+  const updateBlur2 = (newValue) => {
+    dispatch({ type: "UPDATE_BLUR_2", payload: newValue });
+  };
+
+  const updateBrightness1 = (newValue) => {
+    dispatch({ type: "UPDATE_BRIGHTNESS_1", payload: newValue });
+  };
+  const updateBrightness2 = (newValue) => {
+    dispatch({ type: "UPDATE_BRIGHTNESS_2", payload: newValue });
+  };
+  const updateContrast1 = (newValue) => {
+    dispatch({ type: "UPDATE_CONTRAST_1", payload: newValue });
+  };
+  const updateContrast2 = (newValue) => {
+    dispatch({ type: "UPDATE_CONTRAST_2", payload: newValue });
+  };
+  const updateGrayScale1 = (newValue) => {
+    dispatch({ type: "UPDATE_GRAYSCALE_1", payload: newValue });
+  };
+  const updateGrayScale2 = (newValue) => {
+    dispatch({ type: "UPDATE_GRAYSCALE_2", payload: newValue });
+  };
+
+  const updateSaturate1 = (newValue) => {
+    dispatch({ type: "UPDATE_SATURATE_1", payload: newValue });
+  };
+  const updateSaturate2 = (newValue) => {
+    dispatch({ type: "UPDATE_SATURATE_2", payload: newValue });
+  };
+
+  const updateSepia1 = (newValue) => {
+    dispatch({ type: "UPDATE_SEPIA_1", payload: newValue });
+  };
+  const updateSepia2 = (newValue) => {
+    dispatch({ type: "UPDATE_SEPIA_2", payload: newValue });
+  };
+
+  const [selectedImage, setSelectedImage] = useState("1");
   const [valueX, setValueX] = useState([0, 0]);
   const [valueY, setValueY] = useState([0, 0]);
-  const [valueBlur, setValueBlur] = useState([0, 0]);
-  const [valueBrightness, setValueBrightness] = useState([100, 100]);
-  const [valueContrast, setValueContrast] = useState([100, 100]);
-  const [valueGrayScale, setValueGrayScale] = useState([0, 0]);
-  const [valueSaturate, setValueSaturate] = useState([100, 100]);
-  const [valueSepia, setValueSepia] = useState([0, 0]);
+
   const [color, setColor] = useColor("#561ecb");
-  console.log(color.hex);
+  const [resetValues, setResetValues] = useState([
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+  ]);
+
   useEffect(() => {
     const src =
       valueModel == "X"
@@ -94,16 +185,8 @@ export default function Home() {
   }, [valueModel]);
 
   useEffect(() => {
-    setRotations([0, 0]);
-    setZooms([100, 100]);
     setValueX([0, 0]);
     setValueY([0, 0]);
-    setValueBlur([0, 0]);
-    setValueBrightness([100, 100]);
-    setValueContrast([100, 100]);
-    setValueGrayScale([0, 0]);
-    setValueSaturate([100, 100]);
-    setValueSepia([0, 0]);
   }, [value]);
 
   const handleInputChange = (event) => {
@@ -142,76 +225,63 @@ export default function Home() {
     }
   };
 
-  const handleResetZoom = () => {
-    if (selectedImage == 1) {
-      setZooms([100, zooms[1]]);
-    }
-    if (selectedImage == 2) {
-      setZooms([zooms[0], 100]);
-    }
+  const handleResetRotation = () => {
+    setResetValues([
+      !resetValues[0],
+      ...resetValues.slice(1, resetValues.length),
+    ]);
   };
 
-  const handleResetRotation = () => {
-    if (selectedImage == 1) {
-      setRotations([0, rotations[1]]);
-    }
-    if (selectedImage == 2) {
-      setRotations([rotations[0], 0]);
-    }
+  const handleResetZoom = () => {
+    setResetValues([
+      resetValues[0],
+      !resetValues[1],
+      ...resetValues.slice(2, resetValues.length),
+    ]);
   };
 
   const handleResetBlur = () => {
-    if (selectedImage == 1) {
-      setValueBlur([0, valueBlur[1]]);
-    }
-    if (selectedImage == 2) {
-      setValueBlur([valueBlur[0], 0]);
-    }
+    setResetValues([
+      ...resetValues.slice(0, 2),
+      !resetValues[2],
+      ...resetValues.slice(3, resetValues.length),
+    ]);
   };
 
   const handleResetBrightness = () => {
-    if (selectedImage == 1) {
-      setValueBrightness([100, valueBrightness[1]]);
-    }
-    if (selectedImage == 2) {
-      setValueBrightness([valueBrightness[0], 100]);
-    }
+    setResetValues([
+      ...resetValues.slice(0, 3),
+      !resetValues[3],
+      ...resetValues.slice(4, resetValues.length),
+    ]);
   };
 
   const handleResetContrast = () => {
-    if (selectedImage == 1) {
-      setValueContrast([100, valueContrast[1]]);
-    }
-    if (selectedImage == 2) {
-      setValueContrast([valueContrast[0], 100]);
-    }
+    setResetValues([
+      ...resetValues.slice(0, 4),
+      !resetValues[4],
+      ...resetValues.slice(5, resetValues.length),
+    ]);
   };
 
   const handleResetGrayScale = () => {
-    if (selectedImage == 1) {
-      setValueGrayScale([0, valueGrayScale[1]]);
-    }
-    if (selectedImage == 2) {
-      setValueGrayScale([valueGrayScale[0], 0]);
-    }
+    setResetValues([
+      ...resetValues.slice(0, 5),
+      !resetValues[5],
+      ...resetValues.slice(6, resetValues.length),
+    ]);
   };
 
   const handleResetSaturate = () => {
-    if (selectedImage == 1) {
-      setValueSaturate([100, valueSaturate[1]]);
-    }
-    if (selectedImage == 2) {
-      setValueSaturate([valueSaturate[0], 100]);
-    }
+    setResetValues([
+      ...resetValues.slice(0, 6),
+      !resetValues[6],
+      ...resetValues.slice(7, resetValues.length),
+    ]);
   };
 
   const handleResetSepia = () => {
-    if (selectedImage == 1) {
-      setValueSepia([0, valueSepia[1]]);
-    }
-    if (selectedImage == 2) {
-      setValueSepia([valueSepia[0], 0]);
-    }
+    setResetValues([...resetValues.slice(0, 7), !resetValues[7]]);
   };
 
   return (
@@ -547,9 +617,13 @@ export default function Home() {
                 </p>
               </div>
               <ProgressRotation
-                selectedImage={selectedImage}
-                rotations={rotations}
-                setRotations={setRotations}
+                resetValue={resetValues[0]}
+                currentRotation={
+                  selectedImage == "1" ? currentRotation1 : currentRotation2
+                }
+                updateRotation={
+                  selectedImage == "1" ? updateRotation1 : updateRotation2
+                }
               />
             </div>
             <div className="flex flex-col items-center justify-center border-[1px] border-black pb-5 sm:pb-10 w-full sm:w-[85%] md:w-auto ">
@@ -562,9 +636,9 @@ export default function Home() {
                 </p>
               </div>
               <ProgressZoom
-                selectedImage={selectedImage}
-                zooms={zooms}
-                setZooms={setZooms}
+                resetValue={resetValues[1]}
+                currentZoom={selectedImage == "1" ? currentZoom1 : currentZoom2}
+                updateZoom={selectedImage == "1" ? updateZoom1 : updateZoom2}
               />
             </div>
             <div className="flex flex-col items-center justify-center border-[1px] border-black pb-5 w-full sm:w-[85%] md:w-auto h-fit">
@@ -627,9 +701,11 @@ export default function Home() {
                   </p>
                 </div>
                 <ProgressBlur
-                  selectedImage={selectedImage}
-                  valueBlur={valueBlur}
-                  setValueBlur={setValueBlur}
+                  resetValue={resetValues[2]}
+                  currentBlur={
+                    selectedImage == "1" ? currentBlur1 : currentBlur2
+                  }
+                  updateBlur={selectedImage == "1" ? updateBlur1 : updateBlur2}
                 />
               </div>
               <div className="flex flex-col items-center justify-center border-[1px] border-black w-full sm:w-[85%] md:w-auto ">
@@ -645,9 +721,15 @@ export default function Home() {
                   </p>
                 </div>
                 <ProgressBrightness
-                  selectedImage={selectedImage}
-                  valueBrightness={valueBrightness}
-                  setValueBrightness={setValueBrightness}
+                  resetValue={resetValues[3]}
+                  currentBrightness={
+                    selectedImage == "1"
+                      ? currentBrightness1
+                      : currentBrightness2
+                  }
+                  updateBrightness={
+                    selectedImage == "1" ? updateBrightness1 : updateBrightness2
+                  }
                 />
               </div>
             </div>
@@ -665,9 +747,13 @@ export default function Home() {
                   </p>
                 </div>
                 <ProgressContrast
-                  selectedImage={selectedImage}
-                  valueContrast={valueContrast}
-                  setValueContrast={setValueContrast}
+                  resetValue={resetValues[4]}
+                  currentContrast={
+                    selectedImage == "1" ? currentContrast1 : currentContrast2
+                  }
+                  updateContrast={
+                    selectedImage == "1" ? updateContrast1 : updateContrast2
+                  }
                 />
               </div>
               <div className="flex flex-col items-center justify-center border-[1px] border-black w-full sm:w-[85%] md:w-auto ">
@@ -683,9 +769,13 @@ export default function Home() {
                   </p>
                 </div>
                 <ProgressGrayScale
-                  selectedImage={selectedImage}
-                  valueGrayScale={valueGrayScale}
-                  setValueGrayScale={setValueGrayScale}
+                  resetValue={resetValues[5]}
+                  currentGrayScale={
+                    selectedImage == "1" ? currentGrayScale1 : currentGrayScale2
+                  }
+                  updateGrayScale={
+                    selectedImage == "1" ? updateGrayScale1 : updateGrayScale2
+                  }
                 />
               </div>
             </div>
@@ -703,9 +793,13 @@ export default function Home() {
                   </p>
                 </div>
                 <ProgressSaturate
-                  selectedImage={selectedImage}
-                  valueSaturate={valueSaturate}
-                  setValueSaturate={setValueSaturate}
+                  resetValue={resetValues[6]}
+                  currentSaturate={
+                    selectedImage == "1" ? currentSaturate1 : currentSaturate2
+                  }
+                  updateSaturate={
+                    selectedImage == "1" ? updateSaturate1 : updateSaturate2
+                  }
                 />
               </div>
               <div className="flex flex-col items-center justify-center border-[1px] border-black w-full sm:w-[85%] md:w-auto ">
@@ -721,9 +815,13 @@ export default function Home() {
                   </p>
                 </div>
                 <ProgressSepia
-                  selectedImage={selectedImage}
-                  valueSepia={valueSepia}
-                  setValueSepia={setValueSepia}
+                  resetValue={resetValues[7]}
+                  currentSepia={
+                    selectedImage == "1" ? currentSepia1 : currentSepia2
+                  }
+                  updateSepia={
+                    selectedImage == "1" ? updateSepia1 : updateSepia2
+                  }
                 />
               </div>
             </div>
