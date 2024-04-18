@@ -48,31 +48,51 @@ export default function Home() {
   };
   const currentRotation1 = useAppSelector((state) => state.currentRotation1);
   const currentRotation2 = useAppSelector((state) => state.currentRotation2);
+
+  const rotations = [currentRotation1, currentRotation2];
+
   const currentZoom1 = useAppSelector((state) => state.currentZoom1);
   const currentZoom2 = useAppSelector((state) => state.currentZoom2);
+
+  const zooms = [currentZoom1, currentZoom2];
+
   const currentBlur1 = useAppSelector((state) => state.currentBlur1);
   const currentBlur2 = useAppSelector((state) => state.currentBlur2);
+
+  const valueBlur = [currentBlur1, currentBlur2];
+
   const currentBrightness1 = useAppSelector(
     (state) => state.currentBrightness1
   );
   const currentBrightness2 = useAppSelector(
     (state) => state.currentBrightness2
   );
+
+  const valueBrightness = [currentBrightness1, currentBrightness2];
+
   const currentContrast1 = useAppSelector((state) => state.currentContrast1);
 
   const currentContrast2 = useAppSelector((state) => state.currentContrast2);
+
+  const valueContrast = [currentContrast1, currentContrast2];
 
   const currentGrayScale1 = useAppSelector((state) => state.currentGrayScale1);
 
   const currentGrayScale2 = useAppSelector((state) => state.currentGrayScale2);
 
+  const valueGrayScale = [currentGrayScale1, currentGrayScale2];
+
   const currentSaturate1 = useAppSelector((state) => state.currentSaturate1);
 
   const currentSaturate2 = useAppSelector((state) => state.currentSaturate2);
 
+  const valueSaturate = [currentSaturate1, currentSaturate2];
+
   const currentSepia1 = useAppSelector((state) => state.currentSepia1);
 
   const currentSepia2 = useAppSelector((state) => state.currentSepia2);
+
+  const valueSepia = [currentSepia1, currentSepia2];
 
   const dispatch = useAppDispatch();
 
